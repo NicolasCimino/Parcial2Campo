@@ -1,0 +1,8 @@
+04/07/2023 20:39:24 - LEVEL Warning - MENSAJE: Datos incompletos
+04/07/2023 20:39:29 - LEVEL Error - MENSAJE: El cliente es menor de edad
+04/07/2023 20:55:07 - LEVEL Error - MENSAJE: El nombre de objeto 'dbo.Clientes' no es válido.
+04/07/2023 20:55:07 - LEVEL Critical - MENSAJE: El nombre de objeto 'dbo.Clientes' no es válido.
+04/07/2023 20:59:30 - LEVEL Critical - MENSAJE: El nombre de objeto 'dbo.Clientes' no es válido.
+04/07/2023 20:59:56 - LEVEL Warning - MENSAJE: Datos incompletos
+04/07/2023 21:00:01 - LEVEL Critical - MENSAJE: El nombre de objeto 'dbo.Clientes' no es válido.
+04/07/2023 21:20:27 - LEVEL Warning - MENSAJE: Datos incompletos
