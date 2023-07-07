@@ -11,5 +11,6 @@ namespace SL.Contracts
     {
          void Store(Log log);
         List<Log> GetAll();
+        List<Log> GetLogsToday();
     }
 }

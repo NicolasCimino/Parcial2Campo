@@ -44,15 +44,22 @@
   <ItemGroup>
     <Compile Include="BLL\ExceptionBLL.cs" />
     <Compile Include="BLL\LoggerBLL.cs" />
+    <Compile Include="Contracts\IObserver.cs" />
+    <Compile Include="Contracts\ISubject.cs" />
     <Compile Include="Contracts\ILogger.cs" />
     <Compile Include="DAL\Factory\Factory.cs" />
     <Compile Include="DAL\Repositories\LoggerFileRepository.cs" />
     <Compile Include="DAL\Repositories\LoggerSQLRepository.cs" />
+    <Compile Include="DAL\Tools\SqlHelper.cs" />
     <Compile Include="Domain\Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Extension\ExceptionExtension.cs" />
     <Compile Include="Services\Logger.cs" />
+    <Compile Include="Services\ServicesMailNotify.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="DAL\Tools\singleton.snippet" />
+    <None Include="DAL\Tools\staments.snippet" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

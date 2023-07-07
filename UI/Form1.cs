@@ -20,11 +20,12 @@ namespace UI
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+           
             try
             {
                 if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox2.Text) &&
@@ -38,14 +39,13 @@ namespace UI
                     ClienteServices.Current.insertCliente(cliente);
                 }
                 else
-                {
-                    Logger.Current.Store(new Log("Datos incompletos", System.Diagnostics.Tracing.EventLevel.Warning, System.DateTime.Now));
+                {   
                     throw new Exception("Datos incompletos");
                 }
             }
             catch (Exception ex)
             {
-                
+                Logger.Current.Store(new Log(ex.Message, System.Diagnostics.Tracing.EventLevel.Warning, System.DateTime.Now));
                 MessageBox.Show(ex.Message);
             }
             
@@ -63,6 +63,48 @@ namespace UI
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = logs;
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                throw new Exception("Test CriticalError");
+            }
+            catch (Exception ex)
+            {
+                Logger.Current.Store(new Log(ex.Message, System.Diagnostics.Tracing.EventLevel.Critical, System.DateTime.Now));
+            }
+            finally 
+            { 
+                listBox1.DataSource = null;
+                listBox1.DataSource = SL.Services.ServicesMailNotify.Current.mails;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                throw new Exception("Test FatalError");
+            }
+            catch (Exception ex)
+            {
+                Logger.Current.Store(new Log(ex.Message, System.Diagnostics.Tracing.EventLevel.Critical, System.DateTime.Now));
+            }
+            finally
+            {
+                listBox1.DataSource = null;
+                listBox1.DataSource = SL.Services.ServicesMailNotify.Current.mails;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            List<Log> logs = new List<Log>();
+            logs = Logger.Current.GetLogsToday();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = logs;
         }
     }
 }

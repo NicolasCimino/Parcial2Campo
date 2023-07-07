@@ -29,15 +29,18 @@ namespace SL.DAL.Factory
 
 		public ILogger GetLoggerRepository()
 		{
-			if(ConfigurationManager.AppSettings["LoggerRepository"] == "FILE")
+			switch (ConfigurationManager.AppSettings["LoggerRepository"])
 			{
-                return new LoggerFileRepository();
-            }
-            else
-			{ 
-                return new LoggerSQLRepository();
-            }
+				case "SQL": 
+					return new LoggerSQLRepository();
+                   
+                case "FILE":
+                    return new LoggerFileRepository();
 
+                default:
+					 return new LoggerFileRepository();
+                   
+			}
 
         }
 	}

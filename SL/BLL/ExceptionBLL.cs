@@ -1,4 +1,6 @@
-﻿using SL.Services;
+﻿using SL.Contracts;
+using SL.Domain;
+using SL.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,7 +15,7 @@ namespace SL.BLL
     {
         private static string dalAssembly = ConfigurationManager.AppSettings["DALAssembly"];
         private static string bllAssembly = ConfigurationManager.AppSettings["BLLAssembly"];
-
+    
         public static void Handle(Exception ex, object sender)
         {
             string assemblyName = sender.GetType().Module.Name;
@@ -30,7 +32,9 @@ namespace SL.BLL
 
         private static void DALPolicy(Exception ex)
         {
-            Logger.Current.Store(new Domain.Log(ex.Message,System.Diagnostics.Tracing.EventLevel.Critical,System.DateTime.Now));
+            Log log = new Domain.Log(ex.Message, System.Diagnostics.Tracing.EventLevel.Critical, System.DateTime.Now);
+            Logger.Current.Store(log);
+            
             throw new Exception(String.Empty, ex);
         }
 
@@ -42,9 +46,12 @@ namespace SL.BLL
             }
             else
             {
-                Logger.Current.Store(new Domain.Log(ex.Message, System.Diagnostics.Tracing.EventLevel.Error,System.DateTime.Now));
+                Log log = new Domain.Log(ex.Message, System.Diagnostics.Tracing.EventLevel.Error, System.DateTime.Now);
+                Logger.Current.Store(log);
                 throw ex;
             }
         }
+
+
     }
 }

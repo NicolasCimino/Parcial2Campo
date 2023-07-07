@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SL.BLL
 {
 
-        public sealed class LoggerBLL : ILogger
+        public sealed class LoggerBLL : ILogger 
         {
             private readonly static LoggerBLL _instance = new LoggerBLL();
 
@@ -29,12 +29,18 @@ namespace SL.BLL
             {
                   return  DAL.Factory.Factory.Current.GetLoggerRepository().GetAll();
             }
+            public List<Log> GetLogsToday()
+            {
+                return DAL.Factory.Factory.Current.GetLoggerRepository().GetLogsToday();
+            }
 
             public void Store(Log log)
-            {
-                DAL.Factory.Factory.Current.GetLoggerRepository().Store(log);
-            }
-        }
+                {
+                    DAL.Factory.Factory.Current.GetLoggerRepository().Store(log);
+                }
+
+   
+    }
 
        
 }
